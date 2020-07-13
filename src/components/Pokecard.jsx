@@ -39,9 +39,9 @@ Pokecard.propTypes = {
   item: PropTypes.shape({
     status: PropTypes.string,
     value(value) {
-      return typeof value !== 'string' || typeof value !== 'object'
+      return typeof value !== 'string' && typeof value !== 'object'
         ? new Error(
-            `Invalid prop value(${typeof(value)}) supplied to Pokecard. Validation failed`,
+            `Invalid prop value(${typeof value}) supplied to Pokecard. Validation failed`,
           )
         : null;
     },
