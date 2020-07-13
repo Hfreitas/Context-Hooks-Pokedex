@@ -1,33 +1,57 @@
-import { useCallback, useState, useEffect } from 'react';
-import { fetchPokemonList } from '../services/pokeApi';
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { fetchPokemonList, fetchPokemonDetails } from '../services/pokeApi';
 
 export default function usePokeList(offset, limit) {
   const [pokelist, setPokelist] = useState([]);
+  const [pokeDetailsList, setPokeDetailsList] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
-  const [error, setError] = useState('');
+  const [pokelistError, setPokelistError] = useState('');
 
-  const getPokeList = useCallback(() => {
+  const getPokemonDetails = (array) => {
+    const memoizedPokeDetailsList = useMemo(() => {
+      return array.map((element) => {
+        return fetchPokemonDetails(element.url).then(
+          (response) => {
+            setPokeDetailsList([
+              ...pokeDetailsList,
+              { status: 'fulfilled', value: response },
+            ]);
+          },
+          (response) => {
+            setPokeDetailsList([
+              ...pokeDetailsList,
+              { status: 'rejected', value: response.message },
+            ]);
+          },
+        );
+      });
+    }, [array]);
+    return memoizedPokeDetailsList;
+  };
+
+  const getDetailedPokeList = useCallback(() => {
     setIsFetching(true);
     return fetchPokemonList(offset, limit).then(
       (response) => {
         setPokelist(response.results);
+        getPokemonDetails(pokelist);
         setIsFetching(false);
       },
       (response) => {
-        setError(response.message);
+        setPokelistError(response.message);
         setIsFetching(false);
       },
     );
   }, [offset, limit]);
 
   useEffect(() => {
-    getPokeList();
+    getDetailedPokeList();
     return () => {
       setIsFetching(false);
       setPokelist([]);
-      setError('');
+      setPokelistError('');
     };
-  }, [getPokeList]);
+  }, [getDetailedPokeList]);
 
-  return { pokelist, isFetching, error };
+  return { pokeDetailsList, isFetching, pokelistError };
 }
