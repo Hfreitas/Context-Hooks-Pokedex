@@ -25,7 +25,7 @@ const Pokecard = ({ item }) => {
         />
       </header>
       <div>
-        <p>`Nr. ${value.id}`</p>
+        <p>{`Nr. ${value.id}`}</p>
         {value.types.map(({ type: { name } }) => (
           <span key={name}>{name}</span>
         ))}
@@ -41,7 +41,7 @@ Pokecard.propTypes = {
     value(value) {
       return typeof value !== 'string' || typeof value !== 'object'
         ? new Error(
-            `Invalid prop value supplied to Pokecard. Validation failed`,
+            `Invalid prop value(${typeof(value)}) supplied to Pokecard. Validation failed`,
           )
         : null;
     },
