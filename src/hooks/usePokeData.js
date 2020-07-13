@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 import { fetchPokemonList, fetchPokemonDetails } from '../services/pokeApi';
 
 export default function usePokeList(offset, limit) {
@@ -6,12 +6,12 @@ export default function usePokeList(offset, limit) {
   const [isFetching, setIsFetching] = useState(false);
   const [pokelistError, setPokelistError] = useState('');
 
-  const getPokeList = () => {
+  const getPokeList = useCallback(() => {
     fetchPokemonList(offset, limit).then(
       (response) => {
-        fetchPokemonDetails(response.results).then((res) =>
-          setPokeDetailsList(res),
-        );
+        fetchPokemonDetails(response.results).then((data) => {
+          setPokeDetailsList(data);
+        });
         setIsFetching(false);
       },
       (response) => {
@@ -19,7 +19,7 @@ export default function usePokeList(offset, limit) {
         setIsFetching(false);
       },
     );
-  };
+  }, [offset, limit]);
 
   useEffect(() => {
     setIsFetching(true);
@@ -29,7 +29,7 @@ export default function usePokeList(offset, limit) {
       setPokeDetailsList([]);
       setPokelistError('');
     };
-  }, [offset, limit]);
+  }, [getPokeList]);
 
   return { pokeDetailsList, isFetching, pokelistError };
 }
