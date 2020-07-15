@@ -5,16 +5,11 @@ function SearchBar({ onClick }) {
   return (
     <section>
       <div>
-        <input type="text" name="search-bar" />
-      </div>
-      <div>
-        <label htmlFor="id">
-          ID
-          <input type="radio" name="radio-search" id="id" />
-        </label>
-        <label htmlFor="name">
-          <input type="radio" name="radio-search" id="name" />
-        </label>
+        <input
+          type="text"
+          name="search-bar"
+          placeholder="Insert Pokemon name or id"
+        />
       </div>
       <button type="button" onClick={onClick}>
         Search
