@@ -10,6 +10,12 @@ const PaginationComponent = ({ onClick }) => {
       <button type="button" onClick={onClick}>
         <i className="fas fa-backward" />
       </button>
+      <button type="button" onClick={onClick}>
+        <i className="fas fa-fast-backward" />
+      </button>
+      <button type="button" onClick={onClick}>
+        <i className="fas fa-fast-forward" />
+      </button>
     </div>
   );
 };
