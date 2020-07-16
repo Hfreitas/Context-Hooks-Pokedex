@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useContext } from 'react';
+import { PokedexContext } from '../context';
 import Charizard from '../assets/charizard.webp';
 import Primeape from '../assets/primeape.webp';
 import Search from '../assets/search.svg';
 import SearchBar from './SearchBar';
 
-const Header = (props) => {
+const Header = () => {
   const [show, setShow] = useState(false);
+  const { setRedirect, filter, setFilter } = useContext(PokedexContext);
   return (
     <header>
       <div>
@@ -20,11 +21,15 @@ const Header = (props) => {
           onClick={() => setShow(!show)}
         />
       </div>
-      {show && <SearchBar />}
+      {show && (
+        <SearchBar
+          onClick={() => setRedirect(true)}
+          onChange={({ target: { value } }) => setFilter(value)}
+          value={filter}
+        />
+      )}
     </header>
   );
 };
-
-Header.propTypes = {};
 
 export default Header;
