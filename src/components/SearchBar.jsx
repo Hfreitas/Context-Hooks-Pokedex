@@ -7,12 +7,12 @@ const SearchBar = ({ onClick, onChange, value }) => (
       <input
         type="text"
         name="search-bar"
-        placeholder="Insert Pokemon name or id"
+        placeholder="Insert name or id"
         value={value}
         onChange={onChange}
       />
     </div>
-    <button type="button" onClick={onClick}>
+    <button type="button" onClick={onClick} disabled={!value}>
       Search
     </button>
   </section>
