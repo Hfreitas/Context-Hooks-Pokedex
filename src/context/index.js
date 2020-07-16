@@ -9,7 +9,7 @@ export function PokedexProvider({ children }) {
   const [offset, setOffset] = useState(0);
   const [limit, setLimit] = useState(20);
   const [redirect, setRedirect] = useState(false);
-  const [value, setValue] = useState('');
+  const [filter, setFilter] = useState('');
   const pokelist = useCreateData(
     offset,
     limit,
@@ -30,8 +30,8 @@ export function PokedexProvider({ children }) {
     pokelist,
     redirect,
     setRedirect,
-    value,
-    setValue,
+    filter,
+    setFilter,
   };
   return (
     <div>
