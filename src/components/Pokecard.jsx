@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import DefaultImage from '../assets/poke192.png';
 
 const Pokecard = ({ item }) => {
   const { status, value } = item;
@@ -18,11 +19,11 @@ const Pokecard = ({ item }) => {
       <Link to={`pokemon/${value.name}`}>
         <header>
           <img
-            src={value.sprites.front_default}
+            src={value.sprites.front_default || DefaultImage}
             alt={`${value.name} frontal vision`}
           />
           <img
-            src={value.sprites.back_default}
+            src={value.sprites.back_default || DefaultImage}
             alt={`${value.name} back vision`}
           />
         </header>
