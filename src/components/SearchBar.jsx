@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-function SearchBar({ onClick }) {
+function SearchBar({ onClick, onChange, value }) {
   return (
     <section>
       <div>
@@ -9,6 +9,8 @@ function SearchBar({ onClick }) {
           type="text"
           name="search-bar"
           placeholder="Insert Pokemon name or id"
+          value={value}
+          onChange={onChange}
         />
       </div>
       <button type="button" onClick={onClick}>
@@ -17,7 +19,12 @@ function SearchBar({ onClick }) {
     </section>
   );
 }
+SearchBar.defaultProps = { value: '' };
 
-SearchBar.propTypes = { onClick: PropTypes.func.isRequired };
+SearchBar.propTypes = {
+  onClick: PropTypes.func.isRequired,
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string,
+};
 
 export default SearchBar;
