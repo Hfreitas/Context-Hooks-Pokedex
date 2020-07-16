@@ -25,6 +25,7 @@ export function PokedexProvider({ children }) {
   };
 
   const context = {
+    offset,
     controlPagination,
     setLimit,
     pokelist,
