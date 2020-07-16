@@ -18,8 +18,8 @@ export function PokedexProvider({ children }) {
   );
 
   const controlPagination = {
-    forward: () => setOffset((prevOffset) => prevOffset.offset + limit),
-    backward: () => setOffset((prevOffset) => prevOffset.offset - limit),
+    forward: () => setOffset((prevOffset) => prevOffset + limit),
+    backward: () => setOffset((prevOffset) => prevOffset - limit),
     first: () => setOffset(0),
     last: () => setOffset(960),
   };
