@@ -10,8 +10,8 @@ export default function useCreateData(offset, limit, callback1, callback2) {
       (response) => {
         callback2(response.results).then((data) => {
           setlist(data);
+          setIsFetching(false);
         });
-        setIsFetching(false);
       },
       (response) => {
         setListError(response.message);
