@@ -1,5 +1,5 @@
 import React from 'react';
-import Pikachu from '../assets/pikachu.gif';
+import Pikachu from '../assets/pikachu.webp';
 
 const Loading = () => {
   return (
