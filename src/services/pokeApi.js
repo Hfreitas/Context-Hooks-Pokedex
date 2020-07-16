@@ -1,11 +1,13 @@
 export const fetchPokemonList = async (offset, limit) => {
-  const url = `https://pokeapi.co/api/v2/pokemon/?offset=${offset}&limit=${limit}`;
+  const url = `https://pokeapi.co/api/v2/pokemon/?offset=${encodeURIComponent(
+    offset,
+  )}&limit=${encodeURIComponent(limit)}`;
   const response = await fetch(url);
   const json = await response.json();
   return response.ok ? Promise.resolve(json) : Promise.rejects(json);
 };
 
-export const fetchPokemonDetails = async (array) => {
+export const fetchPokemonListDetails = async (array) => {
   const data = array.map(async ({ url }) => {
     const response = await fetch(url);
     const json = await response.json();
@@ -15,4 +17,13 @@ export const fetchPokemonDetails = async (array) => {
     data.reduce((acc, element) => [...acc, element], []),
   );
   return [...allData];
+};
+
+export const fetchPokemonSpeciesDetails = async (string) => {
+  const url = `https://pokeapi.co/api/v2/pokemon-species/${encodeURIComponent(
+    string,
+  )}/`;
+  const response = await fetch(url);
+  const json = await response.json();
+  return response.ok ? Promise.resolve(json) : Promise.rejects(json);
 };
