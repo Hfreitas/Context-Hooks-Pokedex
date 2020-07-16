@@ -10,7 +10,8 @@ function App() {
         <h1>Pokedex Test</h1>
         <Switch>
           <Route path="/" component={Home} />
-          <Route path="/pokemon/:string" component={Details} />
+          <Route path="/pokemon/:id" component={Details} />
+          <Route path="/pokemon/:name" component={Details} />
           <Route component={NotFound} />
         </Switch>
       </div>
