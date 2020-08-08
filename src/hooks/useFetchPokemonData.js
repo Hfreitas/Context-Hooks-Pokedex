@@ -12,11 +12,11 @@ const pokeData = {
 const setPokeData = (data) => ({
   ...pokeData,
   sprite: data.sprites.other['official - artwork'].front_default,
-  nationalDexNumber: data.id,
+  nationalDexNumber: Number(data.id),
   name: data.name,
   types: [...data.types],
-  height: data.height,
-  weight: data.weight,
+  height: Number(data.height),
+  weight: Number(data.weight),
 });
 
 export default function useFetchPokemonData(callback, param) {
