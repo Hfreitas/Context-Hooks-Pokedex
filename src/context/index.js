@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { fetchPokemonList, fetchPokemonListDetails } from '../services/pokeApi';
-import useCreateData from '../hooks/useCreateData';
+import useCreatePokeData from '../hooks/useCreatePokeData';
 
 export const PokedexContext = createContext();
 
@@ -10,7 +10,7 @@ export function PokedexProvider({ children }) {
   const [limit, setLimit] = useState(20);
   const [redirect, setRedirect] = useState(false);
   const [filter, setFilter] = useState('');
-  const pokelist = useCreateData(
+  const pokelist = useCreatePokeData(
     offset,
     limit,
     fetchPokemonList,

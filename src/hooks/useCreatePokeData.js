@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 
-export default function useCreateData(offset, limit, callback1, callback2) {
+export default function useCreatePokeData(offset, limit, callback1, callback2) {
   const [list, setlist] = useState([]);
   const [isFetching, setIsFetching] = useState(false);
   const [listError, setListError] = useState('');
