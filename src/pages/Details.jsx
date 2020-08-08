@@ -2,8 +2,8 @@ import React from 'react';
 
 export default function Details() {
   return (
-    <div>
+    <main>
       <h1>Building</h1>
-    </div>
+    </main>
   );
 }
