@@ -15,7 +15,7 @@ const Pokecard = ({ item }) => {
   }
 
   return (
-    <section>
+    <div>
       <Link to={`pokemon/${value.name}`}>
         <header>
           <img
@@ -35,7 +35,7 @@ const Pokecard = ({ item }) => {
         </div>
         <footer>{value.name}</footer>
       </Link>
-    </section>
+    </div>
   );
 };
 
