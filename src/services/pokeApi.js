@@ -19,8 +19,8 @@ export const fetchPokemonListDetails = async (array) => {
   return [...allData];
 };
 
-export const fetchPokemonSpeciesDetails = async (string) => {
-  const url = `https://pokeapi.co/api/v2/pokemon-species/${encodeURIComponent(
+export const fetchPokemonDetails = async (string) => {
+  const url = `https://pokeapi.co/api/v2/pokemon/${encodeURIComponent(
     string,
   )}/`;
   const response = await fetch(url);
