@@ -4,11 +4,11 @@ import Pokecard from './Pokecard';
 
 const PokeGrid = ({ list }) => {
   return (
-    <div>
+    <section>
       {list.map((item) => (
         <Pokecard key={item.value.id} item={item} />
       ))}
-    </div>
+    </section>
   );
 };
 
